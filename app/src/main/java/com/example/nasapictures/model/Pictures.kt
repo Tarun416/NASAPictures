@@ -2,9 +2,7 @@ package com.example.nasapictures.model
 import com.google.gson.annotations.SerializedName
 
 
-class Pictures : ArrayList<PicturesItem>()
-
-data class PicturesItem(
+data class Pictures(
     @SerializedName("copyright")
     val copyright: String?,
     @SerializedName("date")
