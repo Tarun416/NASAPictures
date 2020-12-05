@@ -11,14 +11,12 @@ import com.example.nasapictures.R
 import com.example.nasapictures.details.DetailFragment
 import com.example.nasapictures.model.Pictures
 import com.example.nasapictures.utils.SpacesItemDecoration
+import com.example.nasapictures.utils.Utils
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.json.JSONArray
 import org.json.JSONException
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.util.*
+
 import kotlin.collections.ArrayList
 
 
@@ -54,7 +52,7 @@ class ListFragment : Fragment() ,ListAdapter.OnPicClick
     private fun addItemFromjson()
     {
         try {
-            val jsonDataString: String = readJSONDataFromFile()
+            val jsonDataString: String = Utils.readJSONDataFromFile(activity!!)
             val jsonArray = JSONArray(jsonDataString)
             for (i in 0 until jsonArray.length()) {
                 val itemObj = jsonArray.getJSONObject(i)
@@ -75,27 +73,8 @@ class ListFragment : Fragment() ,ListAdapter.OnPicClick
         }
     }
 
-    @Throws(IOException::class)
-    private fun readJSONDataFromFile(): String {
-        var inputStream: InputStream? = null
-        val builder = StringBuilder()
-        try {
-            var jsonString: String? = null
-            inputStream = resources.openRawResource(R.raw.picture)
-            val bufferedReader = BufferedReader(
-                    InputStreamReader(inputStream, "UTF-8"))
-            while (bufferedReader.readLine().also({ jsonString = it }) != null) {
-                builder.append(jsonString)
-            }
-        } finally {
-            if (inputStream != null) {
-                inputStream.close()
-            }
-        }
-        return String(builder)
-    }
 
-    override fun onClick(pos: Int) {
+    override fun onPicClick(pos: Int) {
         val detailsFragment = DetailFragment()
         val args = Bundle()
         args.putString("title",pictureslist[pos].title)

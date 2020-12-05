@@ -24,7 +24,7 @@ class ListAdapter(private val context: Context, private val onPicClick: OnPicCli
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        Glide.with(context).load(planetaryResponse[position].url).centerCrop().into(holder.picture)
 
-        holder.picture.setOnClickListener{onPicClick.onClick(position)}
+        holder.picture.setOnClickListener{onPicClick.onPicClick(position)}
     }
 
 
@@ -32,16 +32,10 @@ class ListAdapter(private val context: Context, private val onPicClick: OnPicCli
          val picture = itemView.img
     }
 
-    fun update(response : List<Pictures>)
-    {
-        planetaryResponse.clear()
-        planetaryResponse.addAll(response)
-        notifyDataSetChanged()
-    }
-
+   
     interface OnPicClick
     {
-        fun onClick(pos : Int)
+        fun onPicClick(pos : Int)
     }
 
 }
