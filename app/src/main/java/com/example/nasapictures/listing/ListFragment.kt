@@ -59,8 +59,11 @@ class ListFragment : Fragment() ,ListAdapter.OnPicClick
             for (i in 0 until jsonArray.length()) {
                 val itemObj = jsonArray.getJSONObject(i)
                 val url = itemObj.getString("url")
+                val title = itemObj.getString("title")
+                val explanation = itemObj.getString("explanation")
+                val hdurl = itemObj.getString("hdurl")
 
-                val picture= Pictures(url = url)
+                val picture= Pictures(url = url,title = title,explanation = explanation,hdurl = hdurl)
                 pictureslist.add(picture)
             }
             pictureslist.reverse()
@@ -95,10 +98,9 @@ class ListFragment : Fragment() ,ListAdapter.OnPicClick
     override fun onClick(pos: Int) {
         val detailsFragment = DetailFragment()
         val args = Bundle()
-      /*  args.putString("title",planetaryResponse[pos].title)
-        args.putString("explanation",planetaryResponse[pos].explanation)
-        args.putString("image",planetaryResponse[pos].hdurl)
-        args.putString("version",planetaryResponse[pos].serviceVersion)*/
+        args.putString("title",pictureslist[pos].title)
+        args.putString("explanation",pictureslist[pos].explanation)
+        args.putString("hdurl",pictureslist[pos].hdurl)
         detailsFragment.arguments = args
         activity!!.supportFragmentManager.beginTransaction()
             .replace(R.id.content, detailsFragment)
