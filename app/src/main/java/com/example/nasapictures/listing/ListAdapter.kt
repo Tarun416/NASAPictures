@@ -22,7 +22,7 @@ class ListAdapter(private val context: Context, private val onPicClick: OnPicCli
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       Glide.with(context).load(planetaryResponse[position].url).into(holder.picture)
+       Glide.with(context).load(planetaryResponse[position].url).centerCrop().into(holder.picture)
 
         holder.picture.setOnClickListener{onPicClick.onClick(position)}
     }
