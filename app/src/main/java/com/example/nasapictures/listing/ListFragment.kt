@@ -51,6 +51,7 @@ class ListFragment : Fragment() ,ListAdapter.OnPicClick
 
     private fun addItemFromjson()
     {
+        pictureslist.clear()
         try {
             val jsonDataString: String = Utils.readJSONDataFromFile(activity!!)
             val jsonArray = JSONArray(jsonDataString)
