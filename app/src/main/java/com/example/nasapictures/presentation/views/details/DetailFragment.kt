@@ -1,4 +1,4 @@
-package com.example.nasapictures.details
+package com.example.nasapictures.presentation.views.details
 
 import android.os.Bundle
 import android.view.LayoutInflater

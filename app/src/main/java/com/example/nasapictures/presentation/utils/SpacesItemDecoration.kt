@@ -1,4 +1,4 @@
-package com.example.nasapictures.utils
+package com.example.nasapictures.presentation.utils
 
 import android.graphics.Rect
 import android.view.View
